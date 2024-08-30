@@ -30,8 +30,8 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	},
 	{
 		key: 'customers',
-		label: 'Customers',
-		path: '/admin/customers',
+		label: 'Prestations',
+		path: '/admin/prestations',
 		icon: <HiOutlineUsers />
 	},
 	{

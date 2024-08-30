@@ -7,6 +7,7 @@ import PrivateRoutes from './utils/PrivateRoutes';
 import Layout from './components/admin/Layout'
 import Products from './components/Products'
 import Fournisseurs from './components/Fournisseurs'
+import Prestation from './components/Prestation'
 import './index.css'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
               <Route index element={<Admin />} />
               <Route path="products" element={<Products />} />
               <Route path="fournisseurs" element={<Fournisseurs />} />
+              <Route path="prestations" element={<Prestation />} />
             </Route>
           </Route>
           <Route path="/" element={<Home />} exact />

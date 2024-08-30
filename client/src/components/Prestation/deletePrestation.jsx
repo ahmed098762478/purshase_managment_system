@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-const DeleteProduct = ({ isOpen, onRequestClose, onDelete }) => (
+const DeletePrestation = ({ isOpen, onRequestClose, onDelete }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={onRequestClose}
@@ -9,7 +9,7 @@ const DeleteProduct = ({ isOpen, onRequestClose, onDelete }) => (
     overlayClassName="fixed inset-0 bg-gray-900 bg-opacity-50"
   >
     <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
-      <h2 className="text-lg font-semibold mb-4">Supprimer Produit</h2>
+      <h2 className="text-lg font-semibold mb-4">Delete User</h2>
       <p className="mb-4">Are you sure you want to delete this user? This action cannot be undone.</p>
       <button
         type="button"
@@ -32,4 +32,4 @@ const DeleteProduct = ({ isOpen, onRequestClose, onDelete }) => (
   </Modal>
 );
 
-export default DeleteProduct;
+export default DeletePrestation;

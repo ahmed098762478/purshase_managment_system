@@ -6,26 +6,37 @@ import EditModal from './EditModal';
 
 const data = [
   {
-    name: 'Steven Jobs',
-    email: 'jobs@sailboatui.com',
-    state: 'Active',
-    role: 'Product Designer',
-    team: ['Design', 'Product', 'Develop'],
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Image d'un fournisseur
+    name: "AgriSupplies SARL",
+    adresse: "12 Rue de l'Agriculture, Casablanca, Maroc",
+    telephone: "+212 522 123456",
+    email: "contact@agrisupplies.ma",
+    pratiques: ["Fourniture d'engrais", "Consultation agricole", "Distribution de semences"]
   },
   {
-    name: 'Elon Musk',
-    email: 'test@gmail.com',
-    state: 'Active',
-    role: 'Product Manager',
-    team: ['Product', 'Develop'],
+    image: "https://plus.unsplash.com/premium_photo-1688350808212-4e6908a03925?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    name: "Fertilis Maroc",
+    adresse: "34 Avenue des Phosphates, Safi, Maroc",
+    telephone: "+212 524 654321",
+    email: "info@fertilismaroc.ma",
+    pratiques: ["Production d'engrais", "R&D en fertilisation", "Exportation d'engrais"]
   },
   {
-    name: 'Mark Zuckerberg',
-    email: 'test@gmail.com',
-    state: 'Inactive',
-    role: 'Product Designer',
-    team: ['Design', 'Product'],
+    image: "https://plus.unsplash.com/premium_photo-1664298528358-790433ba0815?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    name: "GreenGrowth Ltd",
+    adresse: "98 Boulevard de l'Environnement, Rabat, Maroc",
+    telephone: "+212 537 765432",
+    email: "support@greengrowth.ma",
+    pratiques: ["Agriculture durable", "Consultation en éco-agriculture", "Fourniture de solutions organiques"]
   },
+  {
+    image: "https://plus.unsplash.com/premium_photo-1683121771856-3c3964975777?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    name: "EcoFertil",
+    adresse: "45 Route de Marrakech, El Jadida, Maroc",
+    telephone: "+212 523 987654",
+    email: "sales@ecofertil.ma",
+    pratiques: ["Production d'engrais bio", "Formation en agriculture écologique", "Consultation en fertilisation"]
+  }
 ];
 
 const FournisseursTable = () => {
@@ -57,9 +68,9 @@ const FournisseursTable = () => {
 return (
   <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div className="flex justify-between items-center mb-6">
-      <h2 className="text-2xl font-semibold leading-tight text-gray-900">Users</h2>
+      <h2 className="text-2xl font-semibold leading-tight text-gray-900">Liste des fournisseurs</h2>
       <button className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700" onClick={openAddUserModal}>
-        Add user
+        Ajouter un fournisseur
       </button>
     </div>
     <div className="flex justify-between items-center mb-4">
@@ -71,13 +82,13 @@ return (
         />
     </div>
     <div className="overflow-x-auto">
-    <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+    <table className="w-full bg-white border border-gray-200 rounded-lg shadow-sm">
       <thead className="bg-gray-50">
         <tr>
           <th scope="col" className="px-6 py-4 font-medium text-gray-900">Name</th>
-          <th scope="col" className="px-6 py-4 font-medium text-gray-900">State</th>
-          <th scope="col" className="px-6 py-4 font-medium text-gray-900">Role</th>
-          <th scope="col" className="px-6 py-4 font-medium text-gray-900">Team</th>
+          <th scope="col" className="px-6 py-4 font-medium text-gray-900">Adresse</th>
+          <th scope="col" className="px-6 py-4 font-medium text-gray-900">telephone</th>
+          {/* <th scope="col" className="px-6 py-4 font-medium text-gray-900">Pratiques</th> */}
           <th scope="col" className="px-6 py-4 font-medium text-gray-900"></th>
         </tr>
       </thead>
@@ -88,7 +99,7 @@ return (
               <div className="relative h-10 w-10">
                 <img
                   className="h-full w-full rounded-full object-cover object-center"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  src={item.image}
                   alt=""
                 />
                 <span className="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
@@ -99,21 +110,20 @@ return (
               </div>
             </th>
             <td className="px-6 py-4">
-              <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                <span className={`h-1.5 w-1.5 rounded-full ${item.state === 'Active' ? 'bg-green-600 ' : 'bg-red-600'}`}></span>
-              {item.state}
-              </span>
+              {item.adresse}
             </td>
-            <td className="px-6 py-4">{item.role}</td>
             <td className="px-6 py-4">
+              {item.telephone}
+            </td>
+            {/* <td className="px-6 py-4">
               <div className="flex gap-2">
-                {item.team.map((tag, idx) => (
-                  <span key={idx} className={`inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold ${tag === 'Design' ? 'bg-blue-50 text-blue-600' : tag === 'Product' ? 'bg-indigo-50 text-indigo-600' : 'bg-violet-50 text-violet-600'}`}>
+                {item.pratiques.map((tag, idx) => (
+                  <span key={idx} className="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold bg-violet-50 text-violet-600">
                     {tag}
                   </span>
                 ))}
               </div>
-            </td>
+            </td> */}
             <td className="px-6 py-4">
               <div className="flex justify-end gap-4">
                 <button aria-label="Delete" onClick={openDeleteModal}>

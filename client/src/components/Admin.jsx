@@ -13,9 +13,9 @@ const Admin = () => {
 				<Chart />
 				<PieChart />
 			</div>
-			<div className="flex flex-row gap-4 w-full">
+			{/* <div className="flex flex-row gap-4 w-full">
 				<PopularProducts />
-			</div>
+			</div> */}
 		</div>
     )
 }

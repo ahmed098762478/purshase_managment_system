@@ -1,49 +1,38 @@
 import React, { useState } from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import AddProduct from "./addProduct";
-import EditProduct from "./editProduct";
-import DeleteProduct from "./deleteProduct";
+import AddPrestation from "./addPrestation";
+import EditPrestation from "./editPrestation";
+import DeletePrestation from "./deletePrestation";
 
 const usersData = [
   {
-    name: "Engrais Superphosphate Triple",
-    prixUnitaire: 450.00,
-    description: "Engrais phosphaté concentré idéal pour améliorer la productivité des sols en cultures céréalières.",
-    categorie: "Engrais",
-    marque: "OCP"
+    name: "Livraison d'engrais NPK",
+    nom_fournisseur: "AgriSupplies SARL",
+    date: "2024-08-10"
   },
   {
-    name: "DAP (Diammonium Phosphate)",
-    prixUnitaire: 520.00,
-    description: "Engrais à base de phosphore et d'azote, utilisé pour favoriser la croissance des plantes.",
-    categorie: "Engrais",
-    marque: "OCP"
+    name: "Consultation en fertilisation",
+    nom_fournisseur: "Fertilis Maroc",
+    date: "2024-08-15"
   },
   {
-    name: "NPK 15-15-15",
-    prixUnitaire: 600.00,
-    description: "Engrais équilibré avec une combinaison de 15% d'azote, 15% de phosphore et 15% de potassium.",
-    categorie: "Engrais",
-    marque: "OCP"
+    name: "Formation en agriculture durable",
+    nom_fournisseur: "GreenGrowth Ltd",
+    date: "2024-08-20"
   },
   {
-    name: "MCP (Monocalcium Phosphate)",
-    prixUnitaire: 480.00,
-    description: "Additif pour l'alimentation animale, riche en calcium et phosphore.",
-    categorie: "Additif Alimentaire",
-    marque: "OCP"
+    name: "Fourniture d'engrais bio",
+    nom_fournisseur: "EcoFertil",
+    date: "2024-08-25"
   },
   {
-    name: "Sulfate d'Ammonium",
-    prixUnitaire: 300.00,
-    description: "Engrais azoté avec du soufre, utilisé pour les cultures nécessitant un apport élevé en azote.",
-    categorie: "Engrais",
-    marque: "OCP"
+    name: "Recherche en agriculture",
+    nom_fournisseur: "AgroPhos Industries",
+    date: "2024-08-28"
   }
-  // Add more users here if needed
 ];
 
-export default function UserList() {
+export default function PrestationTable() {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(5);
   const [searchTerm, setSearchTerm] = useState("");
@@ -75,9 +64,9 @@ export default function UserList() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold leading-tight text-gray-900">Produits</h2>
+        <h2 className="text-2xl font-semibold leading-tight text-gray-900">Liste des prestations</h2>
         <button className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700" onClick={openAddUserModal }>
-          Ajouter Produit
+          Ajouter une prestation
         </button>
       </div>
       <div className="flex justify-between items-center mb-4">
@@ -88,27 +77,18 @@ export default function UserList() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className="overflow">
+      <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
           <thead>
             <tr>
               <th className="px-6 py-3 border-b-2 border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                <input type="checkbox" className="form-checkbox h-4 w-4 text-indigo-600" />
+                Nom Prestation
               </th>
               <th className="px-6 py-3 border-b-2 border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                Name
+                Nom fournisseur
               </th>
               <th className="px-6 py-3 border-b-2 border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                Prix unitaire
-              </th>
-              <th className="px-6 py-3 border-b-2 border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                Description
-              </th>
-              <th className="px-6 py-3 border-b-2 border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                Categorie
-              </th>
-              <th className="px-6 py-3 border-b-2 border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                Marque
+                Date
               </th>
               <th className="px-6 py-3 border-b-2 border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 Actions
@@ -118,20 +98,15 @@ export default function UserList() {
           <tbody>
             {currentUsers.map((user, idx) => (
               <tr key={idx} className="hover:bg-gray-50">
-                <td className="px-6 py-4 border-b border-gray-200">
-                  <input type="checkbox" className="form-checkbox h-4 w-4 text-indigo-600" />
-                </td>
-                <td className="px-6 py-3 border-b border-gray-200 text-sm text-gray-900">{user.name}</td>
-                <td className="px-6 py-3 border-b border-gray-200 text-sm text-gray-500">{user.prixUnitaire}</td>
-                <td className="px-6 py-3 border-b border-gray-200 text-sm text-gray-500">{user.description}</td>
-                <td className="px-6 py-3 border-b border-gray-200 text-sm text-gray-500">{user.categorie}</td>
-                <td className="px-6 py-3 border-b border-gray-200 text-sm text-gray-500">{user.marque}</td>
-                <td className="px-6 py-6 border-b border-gray-200 text-sm text-gray-500 flex space-x-2">
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-900">{user.name}</td>
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-500">{user.nom_fournisseur}</td>
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-500">{user.date}</td>
+                <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-500 flex space-x-2">
                   <button className="text-indigo-600 hover:text-indigo-900" onClick={openEditModal}>
-                    <FiEdit className="h-5 w-5" />
+                    <FiEdit />
                   </button>
                   <button className="text-red-600 hover:text-red-900" onClick={openDeleteModal}>
-                    <FiTrash2 className="h-5 w-5" />
+                    <FiTrash2 />
                   </button>
                 </td>
               </tr>
@@ -139,9 +114,9 @@ export default function UserList() {
           </tbody>
         </table>
       </div>
-	  <AddProduct isOpen={isAddUserModalOpen} onRequestClose={closeAddUserModal} />
-	  <EditProduct isOpen={isEditModalOpen} onRequestClose={closeEditModal} />
-	  <DeleteProduct isOpen={isDeleteModalOpen} onRequestClose={closeDeleteModal} />
+	  <AddPrestation isOpen={isAddUserModalOpen} onRequestClose={closeAddUserModal} />
+	  <EditPrestation isOpen={isEditModalOpen} onRequestClose={closeEditModal} />
+	  <DeletePrestation isOpen={isDeleteModalOpen} onRequestClose={closeDeleteModal} />
       {/* Pagination */}
       <div className="flex justify-between items-center mt-4">
         <span className="text-sm text-gray-700">

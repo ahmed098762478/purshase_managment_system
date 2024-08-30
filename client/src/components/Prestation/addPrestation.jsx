@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-const AddProduct = ({ isOpen, onRequestClose }) => (
+const AddPrestation = ({ isOpen, onRequestClose }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={onRequestClose}
@@ -9,47 +9,41 @@ const AddProduct = ({ isOpen, onRequestClose }) => (
     overlayClassName="fixed inset-0 bg-gray-900 bg-opacity-50"
   >
     <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
-      <h2 className="text-lg font-semibold mb-4">Add Produit</h2>
+      <h2 className="text-lg font-semibold mb-4">Add User</h2>
       <form>
         <div className="mb-4">
           <label className="block text-sm font-medium mb-1">Name</label>
           <input
             type="text"
             className="border border-gray-300 rounded-lg p-2 w-full"
-            defaultValue=""
+            defaultValue="Lindsay Walton"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Prix Unitaire</label>
+          <label className="block text-sm font-medium mb-1">Title</label>
           <input
             type="text"
             className="border border-gray-300 rounded-lg p-2 w-full"
-            defaultValue=""
+            defaultValue="Front-end Developer"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Description</label>
+          <label className="block text-sm font-medium mb-1">Email</label>
           <input
-            type="text"
+            type="email"
             className="border border-gray-300 rounded-lg p-2 w-full"
-            defaultValue=""
+            defaultValue="lindsay.walton@example.com"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Categorie</label>
-          <input
-            type="text"
-            className="border border-gray-300 rounded-lg p-2 w-full"
-            defaultValue=""
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Marque</label>
-          <input
-            type="text"
-            className="border border-gray-300 rounded-lg p-2 w-full"
-            defaultValue=""
-          />
+          <label className="block text-sm font-medium mb-1">Role</label>
+          <select
+            name="state"
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+          >
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
         </div>
         <button
           type="submit"
@@ -69,9 +63,5 @@ const AddProduct = ({ isOpen, onRequestClose }) => (
   </Modal>
 );
 
-AddProduct.defaultProps = {
-    isOpen: false,
-    onRequestClose: () => {}
-}
 
-export default AddProduct;
+export default AddPrestation;

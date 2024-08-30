@@ -9,41 +9,47 @@ const EditProduct = ({ isOpen, onRequestClose }) => (
     overlayClassName="fixed inset-0 bg-gray-900 bg-opacity-50"
   >
     <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
-      <h2 className="text-lg font-semibold mb-4">Edit User</h2>
+      <h2 className="text-lg font-semibold mb-4">Modifier Produit</h2>
       <form>
         <div className="mb-4">
           <label className="block text-sm font-medium mb-1">Name</label>
           <input
             type="text"
             className="border border-gray-300 rounded-lg p-2 w-full"
-            defaultValue="Lindsay Walton"
+            defaultValue=""
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Title</label>
+          <label className="block text-sm font-medium mb-1">Prix unitaire</label>
+          <input
+            type="number"
+            className="border border-gray-300 rounded-lg p-2 w-full"
+            defaultValue=""
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium mb-1">Description</label>
           <input
             type="text"
             className="border border-gray-300 rounded-lg p-2 w-full"
-            defaultValue="Front-end Developer"
+            defaultValue=""
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Email</label>
+          <label className="block text-sm font-medium mb-1">Categorie</label>
           <input
-            type="email"
+            type="text"
             className="border border-gray-300 rounded-lg p-2 w-full"
-            defaultValue="lindsay.walton@example.com"
+            defaultValue=""
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Role</label>
-          <select
-            name="state"
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-          >
-            <option value="Active">Active</option>
-            <option value="Inactive">Inactive</option>
-          </select>
+          <label className="block text-sm font-medium mb-1">Marque</label>
+          <input
+            type="text"
+            className="border border-gray-300 rounded-lg p-2 w-full"
+            defaultValue=""
+          />
         </div>
         <button
           type="submit"
