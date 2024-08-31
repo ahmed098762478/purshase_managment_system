@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -10,14 +11,29 @@ const Login = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-            <img 
-                className="w-32 mb-8 cursor-pointer" 
+            <motion.img 
+                className="w-40 mb-8 cursor-pointer" 
                 src="/img/ocp.png" 
                 alt="OCP Logo" 
                 onClick={handleLogoClick} // Appel de la fonction de redirection
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                transition={{ duration: 1 }}
             />
-            <h1 className="text-3xl font-bold mb-6">Login</h1>
-            <form className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+            <motion.h1 
+                className="text-3xl font-bold mb-6" 
+                initial={{ opacity: 0, y: -20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 1, delay: 0.2 }}
+            >
+                Login
+            </motion.h1>
+            <motion.form 
+                className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm" 
+                initial={{ opacity: 0, scale: 0.9 }} 
+                animate={{ opacity: 1, scale: 1 }} 
+                transition={{ duration: 1, delay: 0.4 }}
+            >
                 <div className="mb-6">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                         Username
@@ -45,10 +61,10 @@ const Login = () => {
                 </div>
                 <button 
                     type="submit" 
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
                     Login
                 </button>
-            </form>
+            </motion.form>
         </div>
     );
 };
