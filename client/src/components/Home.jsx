@@ -1,29 +1,21 @@
-import React from 'react';
-import { useState } from 'react'
-// import '../css/style.css'
-import { useEffect } from 'react';
-import { useRef } from 'react';
-import Swiper from 'swiper';
+import React, { useEffect } from 'react';
+// import '../css/style.css';
 
 function App() {
-
   useEffect(() => {
-    // Handle scroll event
-    const handleScroll = () => {
+     const handleScroll = () => {
       const header = document.querySelector('header');
       const scrollPosition = window.scrollY || document.documentElement.scrollTop;
 
-      if (scrollPosition > 0) {   
+      if (scrollPosition > 0) {
         header.classList.add('scrolled');
-      } else {   
+      } else {
         header.classList.remove('scrolled');
       }
     };
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
 
-    // Handle DOMContentLoaded event
     const handleDOMContentLoaded = () => {
       const element = document.querySelector('.open-animate');
       if (element) {
@@ -31,262 +23,161 @@ function App() {
       }
     };
 
-    // Call DOMContentLoaded handler on component mount
     handleDOMContentLoaded();
 
-    // Cleanup event listeners on component unmount
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
-    <div>
-    <header className="header">
-        <a href="index.html"><img src="/img/ocp.png" style={{ height: "60px" , width: "250px" }} alt="image" /></a>
-        <nav className="navbar">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#blog">blog</a>
-            <a href="../login.html">Login</a>
-        </nav>
-        <i className="fa-solid fa-bars"></i>
-    </header>
-
-    <div className="home" id="home">
-        <div className="swiper home-slid">
-            <div className="swiper-wrapper">
-
-                <div className="swiper-slide box">
-                    <div className="image">
-                        <img src="/img/hero-carousel/ocp1.jpg" style={{ width: "100%" }} alt="image" />
-                    </div>
-                    <div className="content">
-                        <h3>Our vision for a sustainable future</h3>
-                        <p>thanks to our expertise in extraction</p>
-                        <a href="#" className="btn">start</a>
-                    </div>
-                </div>
-
-                <div className="swiper-slide box">
-                    <div className="image">
-                        <img src="/img/hero-carousel/ocp2.webp" style={{ height: "800px" , width: "100%" }} alt="image" />
-                    </div>
-                    <div className="content">
-                        <h3>Find out how we create </h3>
-                        <p>sustainable growth for all</p>
-                        <a href="#" className="btn">start</a>
-                    </div>
-                    
-                </div>
-
-                <div className="swiper-slide box">
-                    <div className="image">
-                        <img src="/img/hero-carousel/ocp3.jpg" style={{ width: "100%", height: "800px" }} alt="image" />
-                    </div>
-                    <div className="content">
-                        <h3>the best contribution to your business</h3>
-                        <p>Our mission is to help you develop your industry</p>
-                        <a href="#" className="btn">start</a>
-                    </div>
-                    
-                </div>
+    <div className="overflow-y-auto h-screen">
+   <header className="flex justify-between items-center p-4 bg-white shadow-md sticky top-0 z-50">
+  <a href="index.html">
+    <img src="/img/ocp.png" className="h-16 w-64" alt="OCP Logo" />
+  </a>
+  <nav className="flex space-x-4 ml-auto">
+    <a href="#home" className="text-gray-700 hover:text-green-500 transition-colors duration-300">Home</a>
+    <a href="#about" className="text-gray-700 hover:text-green-500 transition-colors duration-300">About</a>
+    <a href="#services" className="text-gray-700 hover:text-green-500 transition-colors duration-300">Services</a>
+    <a href="#blog" className="text-gray-700 hover:text-green-500 transition-colors duration-300">Blog</a>
+    <a href="/login" className="text-gray-700 hover:text-green-500 transition-colors duration-300">Login</a>
+  </nav>
+  <i className="fa-solid fa-bars text-gray-700 ml-4"></i>
+</header>
 
 
-            </div>
-            <div className="swiper-button-next"></div>
-            <div className="swiper-button-prev"></div>
+
+
+      { }
+      <section className="relative h-screen bg-cover bg-center" style={{ backgroundImage: 'url(/img/hero-carousel/ocp2.webp)' }}>
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="flex items-center justify-center h-full relative text-white text-center">
+          <div className="max-w-4xl mx-auto p-4">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">Welcome to Our Site</h1>
+            <p className="text-lg md:text-2xl mb-8">Discover our innovative solutions for your business.</p>
+            <a href="#contact" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">Contact Us</a>
           </div>
-    </div>
-
-
-    <section className="about" id="about">
-        <div className="heading">
-            <h2>About</h2>
-            <p>Learn more about the OCP group</p>
-            <div></div>
         </div>
+      </section>
 
-        <div className="box">
-            <div className="about-image">
-                <img src="/img/about/OCP-3.jpg" style={{ width: "500px" }} alt="image" />
-            </div>
-            <div className="content">
-                <h3>What is phosphate?</h3>
-                <div>- An essential source of nutrients</div>
-                <div>- it's the natural source of phosphorus</div>
-                <div>- it's used in several products</div>
-                <div>- it's transformed to produce phosphorus</div>
-            </div>
-        </div>
-    </section>
-
-
-    <section className="services" id="services">
-        <div className="heading">
-            <h2>our services</h2>
-            <div></div>
-        </div>
     
-        <div className="row">
-            <div className="box">
-                <i className="fa-solid fa-industry"></i>
-                <h3>Costumazion process</h3>
-                <p>Our fertilizers are tailor-made to adapt to the specific needs of different types of soil, helping farmers follow the principles of "4R" nutrient management - the right fertilizer, in the right quantity, at the right time and good Place - With the best levels of precision never known.</p>
-            </div>
-    
-            <div className="box">
-                <i className="fa-solid fa-seedling"></i>
-                <h3>Fertilizers</h3>
-                <p>Our fertilizers are tailor-made to adapt to the specific needs of different soil types, helping farmers follow the principles of "4R" nutrient management.</p>
-            </div>
-    
-            <div className="box">
-                <i className="fa-solid fa-map"></i>
-                <h3>Soil cartography</h3>
-                <p>Our mobile laboratories map the quality of the soil locally. The goal is to assess nutrient levels and know what the soil needs.</p>
-            </div>
-    
-            <div className="box">
-                <i className="fa-solid fa-tractor"></i>
-                <h3>Local production</h3>
-                <p>We share our knowledge on the optimal use of fertilizers to preserve resources and promote sustainable agriculture.</p>
-            </div>
-    
-            <div className="box">
-                <div className="content">
-                    <i className="fa-solid fa-lightbulb"></i>
-                    <h3>Innovative solutions</h3>
-                </div>
-                <p>OUR Production Systems, our Investments in New Technologies and our Partnerships with countries and their local reference organizations have enabled us to produce customizable and adaptable fertilizers.</p>
-            </div>
-    
-            <div className="box">
-                <div className="content">
-                    <i className="fa-solid fa-headset"></i>
-                    <h3>24/7 Support</h3>
-                </div>
-                <p>We provide around-the-clock support to ensure that your needs are met at any time.</p>
-            </div>
-        </div>
-    </section>
-    
-   
-    <section className="blog" id="blog">
-        <div className="heading">
-            <h2>Latest News</h2>
-            <div></div>
-        </div>
-        <div className="row">
-            <div className="box">
-                <img src="/img/blog/ocp1.webp" alt="image" />
-                <h3>OCP - Fortescue Joint Venture receives green light from Competition Council</h3>
-<p>The Competition Council has given the green light to the creation of a joint venture between OCP Green Energy SA and the company Fortescue operating in the green energy production sector.</p>
-                <a href="https://lematin.ma/economie/feu-vert-du-conseil-de-la-concurrence-a-la-joint-venture-ocp-fortescue/236842" className="btn">read more</a>
-            </div>
-
-            <div className="box">
-                <img src="/img/blog/ocp2.webp" alt="image" />
-                <h3>USAID and OCP launch two initiatives to develop agriculture in Africa</h3>
-<p>USAID and OCP Group have signed a partnership to launch two projects called “Space to Place” and “Rock Phosphate Amendment.” The first will collect local soil and climate data to guide farmers toward optimal use of plant nutrition solutions.</p>
-                <a href="https://lematin.ma/economie/usaid-et-ocp-lancent-2-initiatives-pour-developper-lagriculture-en-afrique/228210" className="btn">read more</a>
-            </div>
-
-            <div className="box">
-                <img src="/img/blog/ocp3.webp" style={{ height: "47%" }} alt="image" />
-                <h3>OCP: A 350 million euro loan from the AFD under consideration</h3>
-<p>The French Development Agency (AFD) and OCP Group are studying the granting of a loan of up to 350 million euros. The loan will target the development of green hydrogen and ammonia</p>
-
-                <a href="https://lematin.ma/economie/ocp-un-pret-de-350-millions-deuros-de-lafd-a-letude/224081" className="btn">read more</a>
-            </div>
-        </div>
-    </section>
-
-    <div className="welcam">
-        <span>Welcome to the Cherifian Phosphates Office <a href="https://www.ocpgroup.ma/" className="btn">visit our official website</a></span>
-    </div>
-
-    <section className="contact" id="contact">
-        <div className="heading">
-            <h2>contact us</h2>
-            <div></div>
-        </div>
-        <div className="box">
-            <div className="content">
-                <i className="fa-solid fa-mobile-screen"></i>
-                <div>call: +212593823909</div>
-                <div>monday-friday (8am-6pm) </div>
-            </div>
-            <div className="content">
-                <i className="fa-solid fa-envelope"></i>
-                <div>email: Ocp-group@gmail.com</div>
-                <div>web: www.ocpgroup.ma</div>
-            </div>
-            <div className="content">
-                <i className="fa-solid fa-location-dot"></i>
-                <div>location: Khouribga</div>
-                <div>Morroco</div>
-            </div>
+      <section className="about py-16 bg-gray-100" id="about">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">About</h2>
+          <p className="text-gray-600 mb-8">Learn more about the OCP group</p>
         </div>
 
-        <div className="row">
-            <div className="ifarm">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.46998136828!2d31.367140420131445!3d30.080723581957894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583df81720ed69%3A0xb597301dcb56aacf!2z2YXZiNmEINiz2YrYqtmKINiz2YbYqtixINin2YTZhdin2LjYqQ!5e0!3m2!1sar!2seg!4v1653556459063!5m2!1sar!2seg" width="550" height="430" style={{ border:"0" }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center">
+          <div className="md:w-1/2">
+            <img src="/img/about/OCP-3.jpg" className="w-full rounded-lg shadow-lg" alt="About Image" />
+          </div>
+          <div className="md:w-1/2 mt-8 md:mt-0 md:ml-8">
+            <h3 className="text-2xl font-semibold mb-4">What is phosphate?</h3>
+            <div className="space-y-2">
+              <p className="text-gray-600">- An essential source of nutrients</p>
+              <p className="text-gray-600">- It's the natural source of phosphorus</p>
+              <p className="text-gray-600">- It's used in several products</p>
+              <p className="text-gray-600">- It's transformed to produce phosphorus</p>
             </div>
-            <div className="form-c">
-                <form action="">
-                    <input type="text" placeholder="name" />
-                    <input type="email" placeholder="email" />
-                    <input type="number" placeholder="phone" />
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                    <input type="submit" value="send message" />
-                </form>
-            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-
-    <footer className="footer">
-        <div className="content">
-            <h3>Company</h3>
-    <p>We work with leading researchers and technology providers to create bespoke fertilizers for farmers’ individual soils. Discover customization process here.</p>
-            <div className="shar">
-                <i className="fa-brands fa-facebook"></i>
-                <i className="fa-brands fa-instagram"></i>
-                <i className="fa-brands fa-youtube"></i>
-                <i className="fa-brands fa-twitter"></i>
-            </div>
+     
+      <section className="services py-16" id="services">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">Our Services</h2>
         </div>
 
-        <div className="link">
-            <h3>links</h3>
-            <a href="#home">home</a>
-            <a href="#about">about</a>
-            <a href="#services">services</a>
-            <a href="#blog">latest news</a>
-            <a href="#contact">contact</a>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <i className="fa-solid fa-industry text-4xl text-blue-600 mb-4"></i>
+            <h3 className="text-xl font-semibold mb-2">Customization Process</h3>
+            <p className="text-gray-600">Our fertilizers are tailor-made to adapt to the specific needs of different types of soil.</p>
+          </div>
+
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <i className="fa-solid fa-seedling text-4xl text-green-600 mb-4"></i>
+            <h3 className="text-xl font-semibold mb-2">Fertilizers</h3>
+            <p className="text-gray-600">Our fertilizers are tailor-made to adapt to the specific needs of different soil types.</p>
+          </div>
+
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <i className="fa-solid fa-map text-4xl text-yellow-600 mb-4"></i>
+            <h3 className="text-xl font-semibold mb-2">Soil Cartography</h3>
+            <p className="text-gray-600">Our mobile laboratories map the quality of the soil locally to assess nutrient levels.</p>
+          </div>
+
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <i className="fa-solid fa-tractor text-4xl text-red-600 mb-4"></i>
+            <h3 className="text-xl font-semibold mb-2">Local Production</h3>
+            <p className="text-gray-600">We share our knowledge on the optimal use of fertilizers to promote sustainable agriculture.</p>
+          </div>
+
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <i className="fa-solid fa-lightbulb text-4xl text-yellow-500 mb-4"></i>
+            <h3 className="text-xl font-semibold mb-2">Innovative Solutions</h3>
+            <p className="text-gray-600">Our investments in new technologies have enabled us to produce customizable fertilizers.</p>
+          </div>
+
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <i className="fa-solid fa-headset text-4xl text-blue-500 mb-4"></i>
+            <h3 className="text-xl font-semibold mb-2">24/7 Support</h3>
+            <p className="text-gray-600">We provide around-the-clock support to ensure that your needs are met at any time.</p>
+          </div>
         </div>
+      </section>
 
-        <div className="our-servis">
-            <h3>services</h3>
-            <a href="#">Costumazion process</a>
-            <a href="#">Fertilizers</a>
-            <a href="#">Soil cartography</a>
-            <a href="#">Local production</a>
-            <a href="#">Innovative solutions</a>
-            <a href="#">24/7 Support</a>
-        </div>
-
-        <div className="Ournews">
-            <h3>Our Newsletter</h3>
-        <p>The French Development Agency (AFD) and OCP Group are studying the granting of a loan of up to 350 million euros. The loan will target the development of green hydrogen and ammonia</p>
-        </div>
-    </footer>
-
-
+      <section className="blog py-16 bg-gray-100" id="blog">
+  <div className="max-w-6xl mx-auto text-center">
+    <h2 className="text-3xl font-bold mb-4">Latest News</h2>
   </div>
-  )
+
+  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+    {/* Articles du blog */}
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+      <img src="/img/blog/OCP-2.jpg" className="w-full h-64 object-cover" alt="Blog Post" />
+      <div className="p-4">
+        <h3 className="text-xl font-semibold mb-2">Blog Post 1</h3>
+        <p className="text-gray-600">Learn about the latest developments at OCP.</p>
+        <a href="#" className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-md">Read More</a>
+      </div>
+    </div>
+
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+      <img src="/img/blog/OCP-2.jpg" className="w-full h-64 object-cover" alt="Blog Post" />
+      <div className="p-4">
+        <h3 className="text-xl font-semibold mb-2">Blog Post 2</h3>
+        <p className="text-gray-600">Explore our latest news and updates.</p>
+        <a href="#" className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-md">Read More</a>
+      </div>
+    </div>
+
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+      <img src="/img/blog/OCP-2.jpg" className="w-full h-64 object-cover" alt="Blog Post" />
+      <div className="p-4">
+        <h3 className="text-xl font-semibold mb-2">Blog Post 3</h3>
+        <p className="text-gray-600">Get insights into our recent activities.</p>
+        <a href="#" className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-md">Read More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      <footer className="py-8 bg-gray-800 text-white text-center">
+        <p className="mb-4">&copy; 2023 OCP. All rights reserved.</p>
+        <nav className="flex justify-center space-x-4">
+          <a href="#home" className="hover:underline">Home</a>
+          <a href="#about" className="hover:underline">About</a>
+          <a href="#services" className="hover:underline">Services</a>
+          <a href="#blog" className="hover:underline">Blog</a>
+          <a href="/login" className="hover:underline">Login</a>
+        </nav>
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;
