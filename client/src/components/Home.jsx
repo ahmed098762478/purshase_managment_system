@@ -180,27 +180,27 @@ function Home() {
   <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
     {/* Articles du blog */}
     <div className="bg-white shadow-lg rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-      <img src="/img/blog/OCP-2.jpg" className="w-full h-64 object-cover" alt="Blog Post 1" />
+      <img src="/img/blog/ocp1.webp" className="w-full h-64 object-cover" alt="Blog Post 1" />
       <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">Blog Post 1</h3>
+        <h3 className="text-xl font-semibold mb-2">OCP: A 350 million euro loan from the AFD under consideration</h3>
         <p className="text-gray-600">Learn about the latest developments at OCP.</p>
         <a href="#" className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Read More</a>
       </div>
     </div>
 
     <div className="bg-white shadow-lg rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-      <img src="/img/blog/OCP-2.jpg" className="w-full h-64 object-cover" alt="Blog Post 2" />
+      <img src="/img/blog/ocp2.webp" className="w-full h-64 object-cover" alt="Blog Post 2" />
       <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">Blog Post 2</h3>
+        <h3 className="text-xl font-semibold mb-2">OCP - Fortescue Joint Venture receives green light from Competition Council 2</h3>
         <p className="text-gray-600">Explore our latest news and updates.</p>
         <a href="#" className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Read More</a>
       </div>
     </div>
 
     <div className="bg-white shadow-lg rounded-lg overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-      <img src="/img/blog/OCP-2.jpg" className="w-full h-64 object-cover" alt="Blog Post 3" />
+      <img src="/img/blog/ocp3.webp" className="w-full h-64 object-cover" alt="Blog Post 3" />
       <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">Blog Post 3</h3>
+        <h3 className="text-xl font-semibold mb-2">USAID and OCP launch two initiatives to develop agriculture in Africa</h3>
         <p className="text-gray-600">Get insights into our recent activities.</p>
         <a href="#" className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">Read More</a>
       </div>

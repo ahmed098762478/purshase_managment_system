@@ -1,7 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
 import { Link, useLocation } from 'react-router-dom'
-import { FcBearish  } from 'react-icons/fc'
 import { HiOutlineLogout } from 'react-icons/hi'
 import { DASHBOARD_SIDEBAR_LINKS, DASHBOARD_SIDEBAR_BOTTOM_LINKS } from '../../lib/consts/navigation'
 
@@ -11,10 +10,16 @@ const linkClass =
 export default function Sidebar() {
 	return (
 		<div className="bg-neutral-900 w-60 p-3 flex flex-col">
-			<div className="flex items-center gap-2 px-1 py-3">
-				<FcBearish  fontSize={24} />
-				<span className="text-neutral-200 text-lg">Stock Management</span>
-			</div>
+			<div className="flex flex-col items-center gap-2 px-1 py-3">
+				<img 
+					src="../../public/img/ocp.png" 
+					alt="Logo" 
+					className="w-50 h-50" // Ajustez la taille de l'image si nécessaire
+				/>
+<span className="text-neutral-200 text-lg mt-2">  
+					Purshase Management
+				</span>
+							</div>
 			<div className="py-8 flex flex-1 flex-col gap-0.5">
 				{DASHBOARD_SIDEBAR_LINKS.map((link) => (
 					<SidebarLink key={link.key} link={link} />
