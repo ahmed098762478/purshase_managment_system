@@ -31,6 +31,25 @@ class LoginRequest {
     private String email;
     private String motDePasse;
 
-    // Getters and setters
+    // Getter for email
+    public String getEmail() {
+        return email;
+    }
+
+    // Setter for email
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    // Getter for motDePasse
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    // Setter for motDePasse
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
 }
+
 

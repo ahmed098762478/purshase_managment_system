@@ -1,13 +1,14 @@
 package com.example.Spring_backend.service;
 
 import com.example.Spring_backend.entity.CA;
+import com.example.Spring_backend.repository.CARepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CAService {
     @Autowired
-    private CARepository  caRepository;
+    private CARepository caRepository;
 
     public CA login(String email, String motDePasse) throws Exception {
         CA ca = caRepository.findByEmail(email)

@@ -10,7 +10,6 @@ public class SpringBackendApplication {
 
 	public static void main(String[] args) {
 
-		System.out.println("hello world");
 		SpringApplication.run(SpringBackendApplication.class, args);
 	}
 
