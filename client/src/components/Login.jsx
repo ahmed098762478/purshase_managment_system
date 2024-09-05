@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Login = () => {
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleLogoClick = () => {
-        navigate('/');  
+        navigate('/');
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:8080/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, motDePasse: password }),
+            });
+            
+            console.log("Response: ", response); // Ajoutez ce log pour vérifier la réponse
+    
+            if (response.ok) {
+                navigate('/admin');
+            } else {
+                const errorText = await response.text();
+                setErrorMessage(errorText);
+            }
+        } catch (error) {
+            setErrorMessage('An error occurred. Please try again later.');
+        }
+    };
+    
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -15,7 +41,7 @@ const Login = () => {
                 className="w-40 mb-8 cursor-pointer" 
                 src="/img/ocp.png" 
                 alt="OCP Logo" 
-                onClick={handleLogoClick} // Appel de la fonction de redirection
+                onClick={handleLogoClick}  
                 initial={{ opacity: 0 }} 
                 animate={{ opacity: 1 }} 
                 transition={{ duration: 1 }}
@@ -28,19 +54,34 @@ const Login = () => {
             >
                 Login
             </motion.h1>
+
+            {errorMessage && (
+                <motion.div 
+                    className="bg-red-500 text-white p-4 rounded-lg mb-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    {errorMessage}
+                </motion.div>
+            )}
+
             <motion.form 
+                onSubmit={handleSubmit}
                 className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm" 
                 initial={{ opacity: 0, scale: 0.9 }} 
                 animate={{ opacity: 1, scale: 1 }} 
                 transition={{ duration: 1, delay: 0.4 }}
             >
                 <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-                        Username
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                        Email
                     </label>
                     <input 
-                        id="username" 
-                        type="text" 
+                        id="email" 
+                        type="email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required 
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
@@ -52,6 +93,8 @@ const Login = () => {
                     <input 
                         id="password" 
                         type="password" 
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         required 
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
