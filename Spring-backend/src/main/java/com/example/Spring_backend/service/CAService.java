@@ -5,19 +5,21 @@ import com.example.Spring_backend.repository.CARepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CAService {
     @Autowired
     private CARepository caRepository;
 
     public CA login(String email, String motDePasse) throws Exception {
-        CA ca = caRepository.findByEmail(email)
-                .orElseThrow(() -> new Exception("Email not found"));
-
-        if (!ca.getMot_de_passe().equals(motDePasse)) {
-            throw new Exception("Incorrect password");
+        Optional<CA> optionalCA = caRepository.findByEmail(email);
+        if (optionalCA.isPresent()) {
+            CA ca = optionalCA.get();
+            if (ca.getMot_de_passe().equals(motDePasse)) {
+                return ca;
+            }
         }
-        return ca;
+        throw new Exception("Invalid credentials");
     }
 }
-

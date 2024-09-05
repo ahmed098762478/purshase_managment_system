@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/api/auth")
 public class CAController {
@@ -17,39 +18,38 @@ public class CAController {
     private CAService caService;
 
     @PostMapping("/login")
-    public ResponseEntity<CA> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        if (loginRequest.getEmail() == null || loginRequest.getEmail().isEmpty() ||
+                loginRequest.getMotDePasse() == null || loginRequest.getMotDePasse().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email and password are required");
+        }
         try {
             CA ca = caService.login(loginRequest.getEmail(), loginRequest.getMotDePasse());
-            return ResponseEntity.ok(ca);
+            return ResponseEntity.ok("Login successful for user: " + ca.getNom_CA());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
         }
     }
-}
 
-class LoginRequest {
+
+static class LoginRequest {
     private String email;
     private String motDePasse;
 
-    // Getter for email
+    // Getters and Setters
     public String getEmail() {
         return email;
     }
 
-    // Setter for email
     public void setEmail(String email) {
         this.email = email;
     }
 
-    // Getter for motDePasse
     public String getMotDePasse() {
         return motDePasse;
     }
 
-    // Setter for motDePasse
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
     }
-}
-
-
+} }
