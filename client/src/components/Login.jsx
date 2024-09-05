@@ -7,6 +7,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [emailError, setEmailError] = useState('');
 
     const handleLogoClick = () => {
         navigate('/');
@@ -20,9 +21,9 @@ const Login = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, motDePasse: password }),
             });
-            
+
             console.log("Response: ", response); // Ajoutez ce log pour vérifier la réponse
-    
+
             if (response.ok) {
                 navigate('/admin');
             } else {
@@ -33,7 +34,21 @@ const Login = () => {
             setErrorMessage('An error occurred. Please try again later.');
         }
     };
-    
+
+    // Fonction de validation de l'email
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regex.test(email)) {
+            setEmailError('Ceci ne correspond pas au format d\'un email');
+        } else {
+            setEmailError('');
+        }
+    };
+
+    // Condition pour les classes des champs
+    const inputClass = `shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+        emailError ? 'border-red-500' : 'border-gray-300'
+    }`;
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -57,7 +72,7 @@ const Login = () => {
 
             {errorMessage && (
                 <motion.div 
-                    className="bg-red-500 text-white p-4 rounded-lg mb-4"
+                    className="bg-red-300 text-red-700 p-4 rounded-lg mb-4 w-full max-w-sm text-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
@@ -81,10 +96,16 @@ const Login = () => {
                         id="email" 
                         type="email" 
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                            validateEmail(e.target.value); // Validation en temps réel
+                        }}
                         required 
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className={inputClass}
                     />
+                    {emailError && (
+                        <p className="text-red-500 text-sm mt-2">{emailError}</p>
+                    )}
                 </div>
                 <div className="mb-6">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
@@ -96,7 +117,9 @@ const Login = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required 
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                            errorMessage ? 'border-red-500' : 'border-gray-300'
+                        }`}
                     />
                 </div>
                 <div className="mb-6">
