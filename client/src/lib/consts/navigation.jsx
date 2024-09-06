@@ -23,27 +23,33 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <HiOutlineCube />
 	},
 	{
-		key: 'orders',
+		key: 'fournisseurs',
 		label: 'Fournisseurs',
 		path: '/admin/fournisseurs',
 		icon: <HiOutlineShoppingCart />
 	},
 	{
-		key: 'customers',
+		key: 'prestations',
 		label: 'Prestations',
 		path: '/admin/prestations',
 		icon: <HiOutlineUsers />
 	},
 	{
-		key: 'transactions',
-		label: 'Transactions',
-		path: '/admin/transactions',
+		key: 'commandes',
+		label: 'Commandes',
+		path: '/admin/commandes',
 		icon: <HiOutlineDocumentText />
 	},
 	{
-		key: 'messages',
-		label: 'Messages',
-		path: '/admin/messages',
+		key: 'demandeurs',
+		label: 'Demandeurs d\'achat',
+		path: '/admin/demandeurs',
+		icon: <HiOutlineAnnotation />
+	},
+	{
+		key: 'magazins',
+		label: 'Magazins',
+		path: '/admin/magazins',
 		icon: <HiOutlineAnnotation />
 	}
 ]

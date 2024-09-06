@@ -3,18 +3,18 @@ import Modal from 'react-modal';
 
 const EditModal = ({ isOpen, onRequestClose, data, onSave }) => {
   const [formData, setFormData] = useState({
-    name: '',
+    requesterName: '',
+    type: '',
     telephone: '',
-    address: '',
     email: ''
   });
 
   useEffect(() => {
     if (data) {
       setFormData({
-        name: data.name || '',
+        requesterName: data.requesterName || '',
+        type: data.type || '',
         telephone: data.telephone || '',
-        address: data.address || '',
         email: data.email || ''
       });
     }
@@ -38,14 +38,24 @@ const EditModal = ({ isOpen, onRequestClose, data, onSave }) => {
       overlayClassName="fixed inset-0 bg-gray-900 bg-opacity-50"
     >
       <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
-        <h2 className="text-lg font-semibold mb-4">Edit Fournisseur</h2>
+        <h2 className="text-lg font-semibold mb-4">Edit Demandeur d'achat</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Nom Fournisseur</label>
+            <label className="block text-sm font-medium mb-1">Nom du Demandeur</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="requesterName"
+              value={formData.requesterName}
+              onChange={handleChange}
+              className="border border-gray-300 rounded-lg p-2 w-full"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Type</label>
+            <input
+              type="text"
+              name="type"
+              value={formData.type}
               onChange={handleChange}
               className="border border-gray-300 rounded-lg p-2 w-full"
             />
@@ -56,16 +66,6 @@ const EditModal = ({ isOpen, onRequestClose, data, onSave }) => {
               type="text"
               name="telephone"
               value={formData.telephone}
-              onChange={handleChange}
-              className="border border-gray-300 rounded-lg p-2 w-full"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Adresse</label>
-            <input
-              type="text"
-              name="address"
-              value={formData.address}
               onChange={handleChange}
               className="border border-gray-300 rounded-lg p-2 w-full"
             />

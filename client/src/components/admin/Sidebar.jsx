@@ -14,7 +14,7 @@ export default function Sidebar() {
 				<img 
 					src="../../public/img/ocp.png" 
 					alt="Logo" 
-					className="w-50 h-50" 
+					className="w-50 h-50" // Ajustez la taille de l'image si nécessaire
 				/>
 <span className="text-neutral-200 text-lg mt-2">  
 					Purshase Management

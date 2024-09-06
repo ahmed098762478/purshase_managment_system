@@ -98,7 +98,7 @@ function Home() {
                         <a
                             href="#contact"
                             className="bg-transparent border-2 border-green-500 text-green-500 font-bold py-2 px-6 rounded transition duration-300 hover:bg-green-500 hover:text-white"
-                            data-aos="fade-up" data-aos-delay="500"
+                            data-aos="fade-up" data-aos-delay="400"
                         >
                             Contact Us
                         </a>

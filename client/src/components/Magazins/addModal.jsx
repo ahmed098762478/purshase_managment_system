@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-const AddProduct = ({ isOpen, onRequestClose }) => (
+const AddModal = ({ isOpen, onRequestClose }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={onRequestClose}
@@ -9,10 +9,10 @@ const AddProduct = ({ isOpen, onRequestClose }) => (
     overlayClassName="fixed inset-0 bg-gray-900 bg-opacity-50"
   >
     <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
-      <h2 className="text-lg font-semibold mb-4">Add Produit</h2>
+      <h2 className="text-lg font-semibold mb-4">Add Magasin</h2>
       <form>
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Name</label>
+          <label className="block text-sm font-medium mb-1">Nom du Magasin</label>
           <input
             type="text"
             className="border border-gray-300 rounded-lg p-2 w-full"
@@ -20,7 +20,7 @@ const AddProduct = ({ isOpen, onRequestClose }) => (
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Prix Unitaire</label>
+          <label className="block text-sm font-medium mb-1">Telephone</label>
           <input
             type="text"
             className="border border-gray-300 rounded-lg p-2 w-full"
@@ -28,23 +28,7 @@ const AddProduct = ({ isOpen, onRequestClose }) => (
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Description</label>
-          <input
-            type="text"
-            className="border border-gray-300 rounded-lg p-2 w-full"
-            defaultValue=""
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Categorie</label>
-          <input
-            type="text"
-            className="border border-gray-300 rounded-lg p-2 w-full"
-            defaultValue=""
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium mb-1">Marque</label>
+          <label className="block text-sm font-medium mb-1">Adresse</label>
           <input
             type="text"
             className="border border-gray-300 rounded-lg p-2 w-full"
@@ -69,5 +53,4 @@ const AddProduct = ({ isOpen, onRequestClose }) => (
   </Modal>
 );
 
-
-export default AddProduct;
+export default AddModal;
