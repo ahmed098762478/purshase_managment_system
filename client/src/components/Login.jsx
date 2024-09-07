@@ -22,7 +22,7 @@ const Login = () => {
                 body: JSON.stringify({ email, motDePasse: password }),
             });
 
-            console.log("Response: ", response); // Ajoutez ce log pour vérifier la réponse
+            console.log("Response: ", response); 
 
             if (response.ok) {
                 navigate('/admin');
@@ -35,7 +35,7 @@ const Login = () => {
         }
     };
 
-    // Fonction de validation de l'email
+     
     const validateEmail = (email) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!regex.test(email)) {
@@ -45,8 +45,7 @@ const Login = () => {
         }
     };
 
-    // Condition pour les classes des champs
-    const inputClass = `shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+     const inputClass = `shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
         emailError ? 'border-red-500' : 'border-gray-300'
     }`;
 
@@ -98,7 +97,7 @@ const Login = () => {
                         value={email}
                         onChange={(e) => {
                             setEmail(e.target.value);
-                            validateEmail(e.target.value); // Validation en temps réel
+                            validateEmail(e.target.value);  
                         }}
                         required 
                         className={inputClass}
