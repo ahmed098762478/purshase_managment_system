@@ -13,7 +13,7 @@ const EditPrestation = ({ isOpen, onRequestClose, data, onSave }) => {
   useEffect(() => {
     if (isOpen) {
       // Fetch fournisseurs when the modal opens
-      axios.get('http://localhost:8080/api/fournisseurs')
+      axios.get('http://localhost:8080/fournisseurs')
         .then(response => {
           setFournisseurs(response.data);
         })

@@ -32,7 +32,7 @@ const EditModal = ({ isOpen, onRequestClose, fournisseur, onEditFournisseur }) =
     if (fournisseur) {
       console.log("Product exists", fournisseur); // Ensure product is available
       try {
-        const response = await axios.put(`http://localhost:8080/api/fournisseurs/${fournisseur.idFournisseur}`, formData);
+        const response = await axios.put(`http://localhost:8080/fournisseurs/${fournisseur.idFournisseur}`, formData);
         console.log("fournisseur updated successfully", response.data);
         onEditFournisseur(response.data);
         onRequestClose();

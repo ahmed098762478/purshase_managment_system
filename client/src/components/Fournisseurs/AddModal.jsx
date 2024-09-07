@@ -19,7 +19,7 @@ const AddModal = ({ isOpen, onRequestClose, onAddFournisseur }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/fournisseurs', fournisseur);
+      const response = await axios.post('http://localhost:8080/fournisseurs', fournisseur);
       onAddFournisseur(response.data);
       onRequestClose();
     } catch (error) {

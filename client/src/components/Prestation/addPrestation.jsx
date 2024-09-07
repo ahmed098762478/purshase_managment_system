@@ -11,7 +11,7 @@ const AddPrestation = ({ isOpen, onRequestClose, onSave }) => {
   // Fetch the fournisseurs from the backend when the modal opens
   useEffect(() => {
     if (isOpen) {
-      axios.get('http://localhost:8080/api/fournisseurs')
+      axios.get('http://localhost:8080/fournisseurs')
         .then(response => {
           setFournisseurs(response.data);
         })

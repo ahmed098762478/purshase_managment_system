@@ -14,7 +14,7 @@ const FournisseursTable = () => {
   const [fournisseurToEdit, setFournisseurToEdit] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/fournisseurs")
+    axios.get("http://localhost:8080/fournisseurs")
       .then(response => setFournisseurs(response.data))
       .catch(error => console.error("There was an error fetching the products!", error));
   }, []);
@@ -49,7 +49,7 @@ const FournisseursTable = () => {
   const handleDelete = async () => {
     if (fournisseurToDelete) {
       try {
-        await axios.delete(`http://localhost:8080/api/fournisseurs/${fournisseurToDelete.idFournisseur}`);
+        await axios.delete(`http://localhost:8080/fournisseurs/${fournisseurToDelete.idFournisseur}`);
         setFournisseurs(fournisseurs.filter(fournisseur => fournisseur.idFournisseur !== fournisseurToDelete.idFournisseur));
       } catch (error) {
         console.error('There was an error deleting the product!', error);

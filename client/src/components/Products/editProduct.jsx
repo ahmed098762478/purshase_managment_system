@@ -5,23 +5,36 @@ import axios from 'axios';
 const EditProduct = ({ isOpen, onRequestClose, product, onEditProduct }) => {
   const [formData, setFormData] = useState({
     nom: '',
+    idFournisseur: '',
     prix: '',
     description: '',
     categorie: '',
     marque: '',
   });
+  const [fournisseurs, setFournisseurs] = useState([])
 
   useEffect(() => {
-    if (product) {
-      setFormData({
-        nom: product.nom || '',
-        prix: product.prix || '',
-        description: product.description || '',
-        categorie: product.categorie || '',
-        marque: product.marque || '',
-      });
+    if (isOpen) {
+      // Fetch fournisseurs when the modal opens
+      axios.get('http://localhost:8080/fournisseurs')
+        .then(response => {
+          setFournisseurs(response.data);
+        })
+        .catch(error => {
+          console.error("Error fetching fournisseurs", error);
+        });
+      if (product) {
+        setFormData({
+          nom: product.nom || '',
+          idFournisseur: product.fournisseur?.idFournisseur || '',
+          prix: product.prix || '',
+          description: product.description || '',
+          categorie: product.categorie || '',
+          marque: product.marque || '',
+        });
+      }
     }
-  }, [product]);
+  }, [isOpen, product]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,21 +43,20 @@ const EditProduct = ({ isOpen, onRequestClose, product, onEditProduct }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting form", formData); // Check if this is logged
-  
-    if (product) {
-      console.log("Product exists", product); // Ensure product is available
-      try {
-        const response = await axios.put(`http://localhost:8080/produits/${product.idProduit}`, formData);
-        console.log("Product updated successfully", response.data);
-        onEditProduct(response.data);
-        onRequestClose();
-      } catch (error) {
-        console.error('There was an error updating the product!', error.response?.data || error.message);
+    console.log("Submitting form", formData);
+    const updatedData = {
+      idProduit: product.idProduit,
+      nom: formData.nom,
+      prix: formData.prix,
+      description: formData.description,
+      categorie: formData.categorie,
+      marque: formData.marque,
+      fournisseur: {
+        idFournisseur: formData.idFournisseur
       }
-    } else {
-      console.log("No product to update"); // If product is not set
-    }
+    };
+    onEditProduct(updatedData);
+    onRequestClose();
   };
   
 
@@ -68,6 +80,23 @@ const EditProduct = ({ isOpen, onRequestClose, product, onEditProduct }) => {
               className="border border-gray-300 rounded-lg p-2 w-full"
               required
             />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Nom Fournisseur</label>
+            <select
+              name="idFournisseur"
+              value={formData.idFournisseur}
+              onChange={handleChange}
+              className="border border-gray-300 rounded-lg p-2 w-full"
+              required
+            >
+              <option value="" disabled>Select a fournisseur</option>
+              {fournisseurs.map(fournisseur => (
+                <option key={fournisseur.idFournisseur} value={fournisseur.idFournisseur}>
+                  {fournisseur.nomFournisseur}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Prix Unitaire</label>

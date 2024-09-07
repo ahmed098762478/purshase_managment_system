@@ -1,30 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 
 const AddProduct = ({ isOpen, onRequestClose, onAddProduct }) => {
-  const [product, setProduct] = useState({
-    nom: '',
-    prix: '',
-    description: '',
-    categorie: '',
-    marque: '',
-  });
+  const [fournisseurs, setFournisseurs] = useState([]);
+  const [nom, setNom] = useState('');
+  const [selectedFournisseur, setSelectedFournisseur] = useState('');
+  const [prix, setPrix] = useState("");
+  const [description, setDescription] = useState("");
+  const [categorie, setCategorie] = useState("");
+  const [marque, setMarque] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProduct({ ...product, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:8080/produits', product);
-      onAddProduct(response.data);
-      onRequestClose();
-    } catch (error) {
-      console.error('There was an error adding the product!', error);
+  useEffect(() => {
+    if (isOpen) {
+      axios.get('http://localhost:8080/fournisseurs')
+        .then(response => {
+          setFournisseurs(response.data);
+        })
+        .catch(error => {
+          console.error("Error fetching fournisseurs", error);
+        });
     }
+  }, [isOpen]);
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Prepare the new prestation object
+    const newProduit = {
+      nom,
+      fournisseur: {
+        idFournisseur: selectedFournisseur
+      },
+      prix,
+      description,
+      categorie,
+      marque
+    };
+
+    // Make API request to save the new prestation (replace with your endpoint)
+    axios.post('http://localhost:8080/produits', newProduit)
+      .then(response => {
+        onAddProduct(response.data); // Trigger parent component update after save
+        onRequestClose();      // Close the modal
+      })
+      .catch(error => {
+        console.error("Error saving prestation", error);
+      });
   };
 
   return (
@@ -38,23 +61,37 @@ const AddProduct = ({ isOpen, onRequestClose, onAddProduct }) => {
         <h2 className="text-lg font-semibold mb-4">Add Product</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Name</label>
+            <label className="block text-sm font-medium mb-1">Nom produit</label>
             <input
               type="text"
-              name="nom"
-              value={product.nom}
-              onChange={handleChange}
+              value={nom}
+              onChange={(e) => setNom(e.target.value)}
               className="border border-gray-300 rounded-lg p-2 w-full"
               required
             />
           </div>
           <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Nom Fournisseur</label>
+            <select
+              className="border border-gray-300 rounded-lg p-2 w-full"
+              value={selectedFournisseur}
+              onChange={(e) => setSelectedFournisseur(e.target.value)}
+              required
+            >
+              <option value="" disabled>Select a fournisseur</option>
+              {fournisseurs.map(fournisseur => (
+                <option key={fournisseur.idFournisseur} value={fournisseur.idFournisseur}>
+                  {fournisseur.nomFournisseur}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Prix Unitaire</label>
             <input
               type="number"
-              name="prix"
-              value={product.prix}
-              onChange={handleChange}
+              value={prix}
+              onChange={(e) => setPrix(e.target.value)}
               className="border border-gray-300 rounded-lg p-2 w-full"
               required
             />
@@ -64,8 +101,8 @@ const AddProduct = ({ isOpen, onRequestClose, onAddProduct }) => {
             <input
               type="text"
               name="description"
-              value={product.description}
-              onChange={handleChange}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               className="border border-gray-300 rounded-lg p-2 w-full"
             />
           </div>
@@ -74,8 +111,8 @@ const AddProduct = ({ isOpen, onRequestClose, onAddProduct }) => {
             <input
               type="text"
               name="categorie"
-              value={product.categorie}
-              onChange={handleChange}
+              value={categorie}
+              onChange={(e) => setCategorie(e.target.value)}
               className="border border-gray-300 rounded-lg p-2 w-full"
             />
           </div>
@@ -84,8 +121,8 @@ const AddProduct = ({ isOpen, onRequestClose, onAddProduct }) => {
             <input
               type="text"
               name="marque"
-              value={product.marque}
-              onChange={handleChange}
+              value={marque}
+              onChange={(e) => setMarque(e.target.value)}
               className="border border-gray-300 rounded-lg p-2 w-full"
             />
           </div>

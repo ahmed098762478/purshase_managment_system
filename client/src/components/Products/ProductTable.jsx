@@ -14,10 +14,13 @@ export default function UserList() {
   const [productToEdit, setProductToEdit] = useState(null);
 
   useEffect(() => {
+    fetchProduits();
+  }, []);
+  const fetchProduits = () => {
     axios.get("http://localhost:8080/produits")
       .then(response => setProducts(response.data))
       .catch(error => console.error("There was an error fetching the products!", error));
-  }, []);
+  }
 
   const filteredProducts = products.filter(product =>
     product.nom.toLowerCase().includes(searchTerm.toLowerCase())
@@ -61,11 +64,19 @@ export default function UserList() {
     }
   };
   const handleAddProduct = (newProduct) => {
+    fetchProduits();
     setProducts([...products, newProduct]);
   };
 
   const handleEditProduct = (updatedProduct) => {
-    setProducts(products.map(product => product.idProduit === updatedProduct.idProduit ? updatedProduct : product));
+    axios.put(`http://localhost:8080/produits/${updatedProduct.idProduit}`, updatedProduct)
+    .then(() => {
+      fetchProduits(); // Refetch data to include the updated prestation
+      setEditModalOpen(false); // Close the modal
+    })
+    .catch(error => {
+      console.error("Error updating prestation", error);
+    });
   };
 
   return (
@@ -95,6 +106,9 @@ export default function UserList() {
                 Name
               </th>
               <th className="px-6 py-3 border-b-2 border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                Fournisseur
+              </th>
+              <th className="px-6 py-3 border-b-2 border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 Prix unitaire
               </th>
               <th className="px-6 py-3 border-b-2 border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -118,6 +132,7 @@ export default function UserList() {
                   <input type="checkbox" className="form-checkbox h-4 w-4 text-indigo-600" />
                 </td>
                 <td className="px-6 py-3 border-b border-gray-200 text-sm text-gray-900">{product.nom}</td>
+                <td className="px-6 py-3 border-b border-gray-200 text-sm text-gray-500">{product.fournisseur.nomFournisseur}</td>
                 <td className="px-6 py-3 border-b border-gray-200 text-sm text-gray-500">{product.prix}</td>
                 <td className="px-6 py-3 border-b border-gray-200 text-sm text-gray-500">{product.description}</td>
                 <td className="px-6 py-3 border-b border-gray-200 text-sm text-gray-500">{product.categorie}</td>
