@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-const DeleteProduct = ({ isOpen, onRequestClose, onDelete }) => (
+const DeleteProduct = ({ isOpen, onRequestClose, onDelete, product }) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={onRequestClose}
@@ -10,7 +10,7 @@ const DeleteProduct = ({ isOpen, onRequestClose, onDelete }) => (
   >
     <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
       <h2 className="text-lg font-semibold mb-4">Supprimer Produit</h2>
-      <p className="mb-4">Are you sure you want to delete this user? This action cannot be undone.</p>
+      <p className="mb-4">Are you sure you want to delete {product ? product.nom : 'this product'}? This action cannot be undone.</p>
       <button
         type="button"
         className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"

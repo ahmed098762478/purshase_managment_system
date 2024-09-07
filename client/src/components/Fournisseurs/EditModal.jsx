@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Modal from 'react-modal';
 
-const EditModal = ({ isOpen, onRequestClose, data, onSave }) => {
+const EditModal = ({ isOpen, onRequestClose, fournisseur, onEditFournisseur }) => {
   const [formData, setFormData] = useState({
     name: '',
     telephone: '',
@@ -10,24 +11,37 @@ const EditModal = ({ isOpen, onRequestClose, data, onSave }) => {
   });
 
   useEffect(() => {
-    if (data) {
+    if (fournisseur) {
       setFormData({
-        name: data.name || '',
-        telephone: data.telephone || '',
-        address: data.address || '',
-        email: data.email || ''
+        name: fournisseur.name || '',
+        telephone: fournisseur.telephone || '',
+        address: fournisseur.address || '',
+        email: fournisseur.email || ''
       });
     }
-  }, [data]);
+  }, [fournisseur]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSave(formData);
-    onRequestClose();
+    console.log("Submitting form", formData); // Check if this is logged
+  
+    if (fournisseur) {
+      console.log("Product exists", fournisseur); // Ensure product is available
+      try {
+        const response = await axios.put(`http://localhost:8080/api/fournisseurs/${fournisseur.idFournisseur}`, formData);
+        console.log("fournisseur updated successfully", response.data);
+        onEditFournisseur(response.data);
+        onRequestClose();
+      } catch (error) {
+        console.error('There was an error updating the product!', error.response?.data || error.message);
+      }
+    } else {
+      console.log("No product to update"); // If product is not set
+    }
   };
 
   return (
@@ -44,8 +58,8 @@ const EditModal = ({ isOpen, onRequestClose, data, onSave }) => {
             <label className="block text-sm font-medium mb-1">Nom Fournisseur</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="nomFournisseur"
+              value={formData.nomFournisseur}
               onChange={handleChange}
               className="border border-gray-300 rounded-lg p-2 w-full"
             />

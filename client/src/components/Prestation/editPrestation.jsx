@@ -1,22 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import axios from 'axios';
 
 const EditPrestation = ({ isOpen, onRequestClose, data, onSave }) => {
   const [formData, setFormData] = useState({
     prestationName: '',
-    fournisseurName: '',
+    fournisseurId: '',
     prestationDate: ''
   });
+  const [fournisseurs, setFournisseurs] = useState([]);
 
   useEffect(() => {
-    if (data) {
-      setFormData({
-        prestationName: data.prestationName || '',
-        fournisseurName: data.fournisseurName || '',
-        prestationDate: data.prestationDate || ''
-      });
+    if (isOpen) {
+      // Fetch fournisseurs when the modal opens
+      axios.get('http://localhost:8080/api/fournisseurs')
+        .then(response => {
+          setFournisseurs(response.data);
+        })
+        .catch(error => {
+          console.error("Error fetching fournisseurs", error);
+        });
+
+      if (data) {
+        setFormData({
+          prestationName: data.nomPrestation || '',
+          fournisseurId: data.fournisseur?.idFournisseur || '',
+          prestationDate: data.datePrestation ? data.datePrestation.split('T')[0] : ''
+        });
+      }
     }
-  }, [data]);
+  }, [isOpen, data]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,9 +37,18 @@ const EditPrestation = ({ isOpen, onRequestClose, data, onSave }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(formData);
+    const updatedData = {
+      idPrestation: data.idPrestation,
+      nomPrestation: formData.prestationName,
+      datePrestation: formData.prestationDate,
+      fournisseur: {
+        idFournisseur: formData.fournisseurId
+      }
+    };
+    onSave(updatedData);
     onRequestClose();
   };
+  
 
   return (
     <Modal
@@ -50,13 +72,20 @@ const EditPrestation = ({ isOpen, onRequestClose, data, onSave }) => {
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Nom Fournisseur</label>
-            <input
-              type="text"
-              name="fournisseurName"
-              value={formData.fournisseurName}
+            <select
+              name="fournisseurId"
+              value={formData.fournisseurId}
               onChange={handleChange}
               className="border border-gray-300 rounded-lg p-2 w-full"
-            />
+              required
+            >
+              <option value="" disabled>Select a fournisseur</option>
+              {fournisseurs.map(fournisseur => (
+                <option key={fournisseur.idFournisseur} value={fournisseur.idFournisseur}>
+                  {fournisseur.nomFournisseur}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Date Prestation</label>
