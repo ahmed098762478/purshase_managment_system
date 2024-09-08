@@ -1,17 +1,16 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { FaTrashAlt } from 'react-icons/fa';
 
-const DeleteModal = ({ isOpen, onRequestClose }) => (
-    <Modal
+const DeleteModal = ({ isOpen, onRequestClose, onDelete }) => (
+  <Modal
     isOpen={isOpen}
     onRequestClose={onRequestClose}
     className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50"
     overlayClassName="fixed inset-0 bg-gray-900 bg-opacity-50"
   >
     <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
-      <h2 className="text-lg font-semibold mb-4">Delete User</h2>
-      <p className="mb-4">Are you sure you want to delete this user? This action cannot be undone.</p>
+      <h2 className="text-lg font-semibold mb-4">Delete Magasin</h2>
+      <p className="mb-4">Are you sure you want to delete this magasin? This action cannot be undone.</p>
       <button
         type="button"
         className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
@@ -33,4 +32,4 @@ const DeleteModal = ({ isOpen, onRequestClose }) => (
   </Modal>
 );
 
-export default DeleteModal;
+export default DeleteModal;

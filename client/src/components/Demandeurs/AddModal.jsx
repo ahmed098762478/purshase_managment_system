@@ -34,7 +34,13 @@ const AddModal = ({ isOpen, onRequestClose, onSuccess }) => {
             className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50"
             overlayClassName="fixed inset-0 bg-gray-900 bg-opacity-50"
         >
-            <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
+            <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto relative">
+                <button
+                    onClick={onRequestClose}
+                    className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                >
+                    &times;
+                </button>
                 <h2 className="text-lg font-semibold mb-4">Ajouter un Demandeur d'achat</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
@@ -94,4 +100,4 @@ const AddModal = ({ isOpen, onRequestClose, onSuccess }) => {
     );
 };
 
-export default AddModal;
+export default AddModal;

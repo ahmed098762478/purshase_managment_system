@@ -82,4 +82,4 @@ const AddModal = ({ isOpen, onRequestClose, onAddMagasin }) => {
   );
 };
 
-export default AddModal;
+export default AddModal;

@@ -1,36 +1,31 @@
 import React from 'react';
-import Modal from 'react-modal';
-import { FaTrashAlt } from 'react-icons/fa';
+import axios from 'axios';
+import { FaTimes } from 'react-icons/fa';
+import '../../css/modal.css';
 
-const DeleteModal = ({ isOpen, onRequestClose }) => (
-    <Modal
-    isOpen={isOpen}
-    onRequestClose={onRequestClose}
-    className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50"
-    overlayClassName="fixed inset-0 bg-gray-900 bg-opacity-50"
-  >
-    <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
-      <h2 className="text-lg font-semibold mb-4">Delete User</h2>
-      <p className="mb-4">Are you sure you want to delete this user? This action cannot be undone.</p>
-      <button
-        type="button"
-        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-        onClick={() => {
-          onDelete();
-          onRequestClose();
-        }}
-      >
-        Delete
-      </button>
-      <button
-        type="button"
-        className="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400"
-        onClick={onRequestClose}
-      >
-        Cancel
-      </button>
-    </div>
-  </Modal>
-);
+const DeleteModal = ({ isOpen, onRequestClose, demandeurId, onDelete }) => {
+    const handleDelete = async () => {
+        try {
+            await axios.delete(http://localhost:8080/api/demandeurs/${demandeurId});
+            onDelete('Demandeur supprimé avec succès.');
+        } catch (error) {
+            onDelete(null, "Erreur lors de la suppression du demandeur");
+        }
+    };
 
-export default DeleteModal;
+    return (
+        <div className={modal ${isOpen ? 'modal-open' : ''}}>
+            <div className="modal-content">
+                <button className="close" onClick={onRequestClose}><FaTimes /></button>
+                <h2 className="text-xl font-semibold mb-4">Supprimer le demandeur</h2>
+                <p className="mb-4">Êtes-vous sûr de vouloir supprimer ce demandeur ?</p>
+                <div className="flex justify-end">
+                    <button onClick={handleDelete} className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">Supprimer</button>
+                    <button onClick={onRequestClose} className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 ml-2">Annuler</button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default DeleteModal;
