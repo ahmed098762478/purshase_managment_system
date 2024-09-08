@@ -1,46 +1,51 @@
 package com.example.Spring_backend.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Magasin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMagazin;
+    private Long id_magasin;
 
-    private String nomMagazin;
-    private String telephone;
-    private String adresse;
+    private String nom_magasin;
+    private String adresse_magasin;
+    private String telephone_magasin;
 
-    public Long getIdMagazin() {
-        return idMagazin;
+    // Getters et Setters
+    public Long getId_magasin() {
+        return id_magasin;
     }
 
-    public String getNomMagazin() {
-        return nomMagazin;
+    public void setId_magasin(Long id_magasin) {
+        this.id_magasin = id_magasin;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getNom_magasin() {
+        return nom_magasin;
     }
 
-    public String getAdresse() {
-        return adresse;
+    public void setNom_magasin(String nom_magasin) {
+        this.nom_magasin = nom_magasin;
     }
 
-    public void setIdMagazin(Long idMagazin) {
-        this.idMagazin = idMagazin;
+    public String getAdresse_magasin() {
+        return adresse_magasin;
     }
 
-    public void setNomMagazin(String nomMagazin) {
-        this.nomMagazin = nomMagazin;
+    public void setAdresse_magasin(String adresse_magasin) {
+        this.adresse_magasin = adresse_magasin;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public String getTelephone_magasin() {
+        return telephone_magasin;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setTelephone_magasin(String telephone_magasin) {
+        this.telephone_magasin = telephone_magasin;
     }
 }
+
