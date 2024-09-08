@@ -1,5 +1,6 @@
 package com.example.Spring_backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,10 @@ public class Produit {
     private Double prix;
     private String categorie;
     private String marque;
+    @ManyToOne
+    @JoinColumn(name = "fournisseur_id")  // Clé étrangère pour Fournisseur
+    @JsonIgnoreProperties("produits")  // Avoid infinite recursion
+    private Fournisseur fournisseur;
 
     public Long getIdProduit() {
         return idProduit;
@@ -38,6 +43,10 @@ public class Produit {
         return marque;
     }
 
+    public Fournisseur getFournisseur() {
+        return fournisseur;
+    }
+
     public void setIdProduit(Long idProduit) {
         this.idProduit = idProduit;
     }
@@ -60,5 +69,9 @@ public class Produit {
 
     public void setMarque(String marque) {
         this.marque = marque;
+    }
+
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
     }
 }

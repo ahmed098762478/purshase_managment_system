@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/fournisseurs")
+@RequestMapping("/fournisseurs")
 @CrossOrigin(origins = "http://localhost:5173")
 public class FournisseurController {
 

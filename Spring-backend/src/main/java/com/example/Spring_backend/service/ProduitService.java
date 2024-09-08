@@ -38,6 +38,7 @@ public class ProduitService {
         produit.setPrix(produitDetails.getPrix());
         produit.setCategorie(produitDetails.getCategorie());
         produit.setMarque(produitDetails.getMarque());
+        produit.setFournisseur(produitDetails.getFournisseur());
         return produitRepository.save(produit);
     }
 
