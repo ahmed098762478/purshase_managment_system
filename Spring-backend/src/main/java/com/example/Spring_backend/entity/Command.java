@@ -41,6 +41,10 @@ public class Command {
     }
 
 
+    public Long getMatricule() {
+        return matricule;
+    }
+
     public List<CommandLineItem> getLineItems() {
         return lineItems;
     }
