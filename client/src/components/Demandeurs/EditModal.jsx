@@ -9,11 +9,11 @@ const EditModal = ({ isOpen, onRequestClose, demandeur, onSave }) => {
     const [emailDemandeur, setEmailDemandeur] = useState(demandeur.email_demandeur);
     const [telephoneDemandeur, setTelephoneDemandeur] = useState(demandeur.telephone_demandeur);
     const [errorMessage, setErrorMessage] = useState('');
-    
+
     const handleSave = async (e) => {
         e.preventDefault();
         try {
-            await axios.put("http://localhost:8080/api/demandeurs/${demandeur.id_demandeur}", {
+            await axios.put(`http://localhost:8080/api/demandeurs/${demandeur.id_demandeur}`, {
                 nom_demandeur: nomDemandeur,
                 type,
                 email_demandeur: emailDemandeur,
@@ -27,7 +27,7 @@ const EditModal = ({ isOpen, onRequestClose, demandeur, onSave }) => {
     };
 
     return (
-        <div className={modal ${isOpen ? 'modal-open' : ''}}>
+        <div className={`modal ${isOpen ? 'modal-open' : ''}`}>
             <div className="modal-content">
                 <button className="close" onClick={onRequestClose}><FaTimes /></button>
                 <h2 className="text-xl font-semibold mb-4">Modifier le demandeur</h2>
@@ -86,4 +86,4 @@ const EditModal = ({ isOpen, onRequestClose, demandeur, onSave }) => {
     );
 };
 
-export default EditModal;
+export default EditModal;

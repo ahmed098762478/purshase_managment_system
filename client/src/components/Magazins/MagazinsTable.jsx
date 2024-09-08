@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
-import AddModal from './AddModal';
+import AddModal from './addModal';
 import EditModal from './EditModal';
 import DeleteModal from './DeleteModal';
 import axios from 'axios';
@@ -34,7 +34,7 @@ const MagazinsTable = () => {
   const handleAddMagasin = async (newMagasin) => {
     try {
       await axios.post(API_URL, newMagasin);
-      setSuccessMessage('Magasin est ajouté avec succes!');
+      setSuccessMessage('Magasin est ajouté avec succès!');
       setAddUserModalOpen(false);
       const response = await axios.get(API_URL);
       setData(response.data);
@@ -46,8 +46,8 @@ const MagazinsTable = () => {
 
   const handleDeleteMagasin = async (id) => {
     try {
-      await axios.delete(${API_URL}/${id});
-      setSuccessMessage('Magasin est supprimé avec succes!');
+      await axios.delete(`${API_URL}/${id}`);
+      setSuccessMessage('Magasin est supprimé avec succès!');
       setDeleteModalOpen(false);
       const response = await axios.get(API_URL);
       setData(response.data);
@@ -58,8 +58,8 @@ const MagazinsTable = () => {
 
   const handleEditMagasin = async (updatedMagasin) => {
     try {
-      await axios.put(${API_URL}/${updatedMagasin.id_magasin}, updatedMagasin);
-      setSuccessMessage('Magasin est modifié avec succes !');
+      await axios.put(`${API_URL}/${updatedMagasin.id_magasin}`, updatedMagasin);
+      setSuccessMessage('Magasin est modifié avec succès!');
       setEditModalOpen(false);
       const response = await axios.get(API_URL);
       setData(response.data);
@@ -148,7 +148,7 @@ const MagazinsTable = () => {
       </div>
       <AddModal isOpen={isAddUserModalOpen} onRequestClose={closeAddUserModal} onAddMagasin={handleAddMagasin} />
       <EditModal isOpen={isEditModalOpen} onRequestClose={closeEditModal} onEditMagasin={handleEditMagasin} magasin={selectedMagasin} />
-      <DeleteModal isOpen={isDeleteModalOpen} onRequestClose={closeDeleteModal} onDelete={() => handleDeleteMagasin(selectedMagasin.id_magasin)} />
+      <DeleteModal isOpen={isDeleteModalOpen} onRequestClose={closeDeleteModal} onDelete={() => handleDeleteMagasin(selectedMagasin?.id_magasin)} />
       <div className="mt-4 flex justify-center">
         <nav aria-label="Page navigation">
           <ul className="inline-flex items-center space-x-2">
@@ -156,7 +156,7 @@ const MagazinsTable = () => {
               <li key={number}>
                 <button
                   onClick={() => paginate(number + 1)}
-                  className={px-3 py-2 rounded-md text-sm font-medium ${currentPage === number + 1 ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700'}}
+                  className={`px-3 py-2 rounded-md text-sm font-medium ${currentPage === number + 1 ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700'}`}
                 >
                   {number + 1}
                 </button>
@@ -169,4 +169,4 @@ const MagazinsTable = () => {
   );
 };
 
-export default MagazinsTable;
+export default MagazinsTable;

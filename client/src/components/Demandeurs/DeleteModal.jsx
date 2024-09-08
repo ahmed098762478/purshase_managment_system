@@ -3,10 +3,10 @@ import axios from 'axios';
 import { FaTimes } from 'react-icons/fa';
 import '../../css/modal.css';
 
-const DeleteModal = ({ isOpen, onRequestClose, demandeurId, onDelete }) => {
+const DeleteModal = ({ isOpen, onRequestClose, demandeur, onDelete }) => {
     const handleDelete = async () => {
         try {
-            await axios.delete(http://localhost:8080/api/demandeurs/${demandeurId});
+            await axios.delete(`http://localhost:8080/api/demandeurs/${demandeur}`);
             onDelete('Demandeur supprimé avec succès.');
         } catch (error) {
             onDelete(null, "Erreur lors de la suppression du demandeur");
@@ -14,7 +14,7 @@ const DeleteModal = ({ isOpen, onRequestClose, demandeurId, onDelete }) => {
     };
 
     return (
-        <div className={modal ${isOpen ? 'modal-open' : ''}}>
+        <div className={`modal ${isOpen ? 'modal-open' : ''}`}>
             <div className="modal-content">
                 <button className="close" onClick={onRequestClose}><FaTimes /></button>
                 <h2 className="text-xl font-semibold mb-4">Supprimer le demandeur</h2>
@@ -28,4 +28,4 @@ const DeleteModal = ({ isOpen, onRequestClose, demandeurId, onDelete }) => {
     );
 };
 
-export default DeleteModal;
+export default DeleteModal;

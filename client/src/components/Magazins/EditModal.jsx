@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
-const EditModal = ({ isOpen, onRequestClose, magasin, onEditMagasin }) => {
+const EditModal = ({ isOpen, onRequestClose, data, onSave }) => {
   const [formData, setFormData] = useState({
-    nom_magasin: '',
-    adresse_magasin: '',
-    telephone_magasin: ''
+    magasinName: '',
+    telephone: '',
+    address: ''
   });
 
   useEffect(() => {
-    if (magasin) {
+    if (data) {
       setFormData({
-        nom_magasin: magasin.nom_magasin || '',
-        adresse_magasin: magasin.adresse_magasin || '',
-        telephone_magasin: magasin.telephone_magasin || ''
+        magasinName: data.magasinName || '',
+        telephone: data.telephone || '',
+        address: data.address || ''
       });
     }
-  }, [magasin]);
+  }, [data]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,7 +24,7 @@ const EditModal = ({ isOpen, onRequestClose, magasin, onEditMagasin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onEditMagasin({ ...formData, id_magasin: magasin.id_magasin });
+    onSave(formData);
     onRequestClose();
   };
 
@@ -42,18 +42,18 @@ const EditModal = ({ isOpen, onRequestClose, magasin, onEditMagasin }) => {
             <label className="block text-sm font-medium mb-1">Nom du Magasin</label>
             <input
               type="text"
-              name="nom_magasin"
-              value={formData.nom_magasin}
+              name="magasinName"
+              value={formData.magasinName}
               onChange={handleChange}
               className="border border-gray-300 rounded-lg p-2 w-full"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Téléphone</label>
+            <label className="block text-sm font-medium mb-1">Telephone</label>
             <input
               type="text"
-              name="telephone_magasin"
-              value={formData.telephone_magasin}
+              name="telephone"
+              value={formData.telephone}
               onChange={handleChange}
               className="border border-gray-300 rounded-lg p-2 w-full"
             />
@@ -62,8 +62,8 @@ const EditModal = ({ isOpen, onRequestClose, magasin, onEditMagasin }) => {
             <label className="block text-sm font-medium mb-1">Adresse</label>
             <input
               type="text"
-              name="adresse_magasin"
-              value={formData.adresse_magasin}
+              name="address"
+              value={formData.address}
               onChange={handleChange}
               className="border border-gray-300 rounded-lg p-2 w-full"
             />
@@ -87,4 +87,4 @@ const EditModal = ({ isOpen, onRequestClose, magasin, onEditMagasin }) => {
   );
 };
 
-export default EditModal;
+export default EditModal;

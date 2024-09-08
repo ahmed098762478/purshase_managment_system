@@ -4,18 +4,18 @@ import Modal from 'react-modal';
 
 const EditModal = ({ isOpen, onRequestClose, fournisseur, onEditFournisseur }) => {
   const [formData, setFormData] = useState({
-    name: '',
+    nomFournisseur: '',  // Fix the key here
     telephone: '',
-    address: '',
+    adresse: '',  // Fix the key here to match with the API field
     email: ''
   });
 
   useEffect(() => {
     if (fournisseur) {
       setFormData({
-        name: fournisseur.name || '',
+        nomFournisseur: fournisseur.nomFournisseur || '',  // Fix the key here
         telephone: fournisseur.telephone || '',
-        address: fournisseur.address || '',
+        adresse: fournisseur.adresse || '',  // Fix the key here
         email: fournisseur.email || ''
       });
     }
@@ -27,20 +27,15 @@ const EditModal = ({ isOpen, onRequestClose, fournisseur, onEditFournisseur }) =
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting form", formData); // Check if this is logged
   
     if (fournisseur) {
-      console.log("Product exists", fournisseur); // Ensure product is available
       try {
         const response = await axios.put(`http://localhost:8080/fournisseurs/${fournisseur.idFournisseur}`, formData);
-        console.log("fournisseur updated successfully", response.data);
         onEditFournisseur(response.data);
         onRequestClose();
       } catch (error) {
-        console.error('There was an error updating the product!', error.response?.data || error.message);
+        console.error('There was an error updating the fournisseur!', error.response?.data || error.message);
       }
-    } else {
-      console.log("No product to update"); // If product is not set
     }
   };
 
@@ -78,8 +73,8 @@ const EditModal = ({ isOpen, onRequestClose, fournisseur, onEditFournisseur }) =
             <label className="block text-sm font-medium mb-1">Adresse</label>
             <input
               type="text"
-              name="address"
-              value={formData.address}
+              name="adresse"  // Ensure this name matches the formData key
+              value={formData.adresse}  // Use the correct field name
               onChange={handleChange}
               className="border border-gray-300 rounded-lg p-2 w-full"
             />

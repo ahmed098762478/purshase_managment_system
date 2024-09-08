@@ -48,7 +48,7 @@ const DemandeursTable = () => {
 
     const openEditModal = async (id_demandeur) => {
         try {
-            const response = await axios.get("http://localhost:8080/api/demandeurs/${id_demandeur}");
+            const response = await axios.get(`http://localhost:8080/api/demandeurs/${id_demandeur}`);
             setSelectedDemandeur(response.data);
             setEditModalOpen(true);
         } catch (error) {
@@ -210,7 +210,7 @@ const DemandeursTable = () => {
                 <DeleteModal
                     isOpen={isDeleteModalOpen}
                     onRequestClose={closeDeleteModal}
-                    demandeurId={selectedDemandeur}
+                    demandeur={selectedDemandeur}
                     onDelete={handleDelete}
                 />
             )}
