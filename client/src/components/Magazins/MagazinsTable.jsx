@@ -5,7 +5,7 @@ import EditModal from './EditModal';
 import DeleteModal from './DeleteModal';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/magazins'; // Assurez-vous que cette URL est correcte
+const API_URL = 'http://localhost:8080/api/magazins';
 
 const MagazinsTable = () => {
   const [data, setData] = useState([]);
@@ -38,8 +38,7 @@ const MagazinsTable = () => {
       setAddUserModalOpen(false);
       const response = await axios.get(API_URL);
       setData(response.data);
-      setTimeout(() => setSuccessVisible(false), 7000);
-
+      setTimeout(() => setSuccessMessage(''), 7000);
     } catch (error) {
       console.error('Error adding magasin:', error);
     }
@@ -47,7 +46,7 @@ const MagazinsTable = () => {
 
   const handleDeleteMagasin = async (id) => {
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      await axios.delete(${API_URL}/${id});
       setSuccessMessage('Magasin est supprimé avec succes!');
       setDeleteModalOpen(false);
       const response = await axios.get(API_URL);
@@ -59,7 +58,7 @@ const MagazinsTable = () => {
 
   const handleEditMagasin = async (updatedMagasin) => {
     try {
-      await axios.put(`${API_URL}/${updatedMagasin.id_magasin}`, updatedMagasin);
+      await axios.put(${API_URL}/${updatedMagasin.id_magasin}, updatedMagasin);
       setSuccessMessage('Magasin est modifié avec succes !');
       setEditModalOpen(false);
       const response = await axios.get(API_URL);
@@ -149,17 +148,17 @@ const MagazinsTable = () => {
       </div>
       <AddModal isOpen={isAddUserModalOpen} onRequestClose={closeAddUserModal} onAddMagasin={handleAddMagasin} />
       <EditModal isOpen={isEditModalOpen} onRequestClose={closeEditModal} onEditMagasin={handleEditMagasin} magasin={selectedMagasin} />
-      <DeleteModal isOpen={isDeleteModalOpen} onRequestClose={closeDeleteModal} onDeleteMagasin={() => handleDeleteMagasin(selectedMagasin.id_magasin)} />
+      <DeleteModal isOpen={isDeleteModalOpen} onRequestClose={closeDeleteModal} onDelete={() => handleDeleteMagasin(selectedMagasin.id_magasin)} />
       <div className="mt-4 flex justify-center">
         <nav aria-label="Page navigation">
           <ul className="inline-flex items-center space-x-2">
-            {Array.from({ length: Math.ceil(filteredUsers.length / usersPerPage) }).map((_, index) => (
-              <li key={index}>
+            {[...Array(Math.ceil(filteredUsers.length / usersPerPage)).keys()].map((number) => (
+              <li key={number}>
                 <button
-                  onClick={() => paginate(index + 1)}
-                  className={`px-4 py-2 border rounded-md ${currentPage === index + 1 ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700'}`}
+                  onClick={() => paginate(number + 1)}
+                  className={px-3 py-2 rounded-md text-sm font-medium ${currentPage === number + 1 ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700'}}
                 >
-                  {index + 1}
+                  {number + 1}
                 </button>
               </li>
             ))}
@@ -170,4 +169,4 @@ const MagazinsTable = () => {
   );
 };
 
-export default MagazinsTable;
+export default MagazinsTable;
