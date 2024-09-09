@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/PFA
     username: postgres
-    password: root
+    password: MIRAGE2050
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

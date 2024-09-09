@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:5177")
+@CrossOrigin(origins = "http://localhost:5173")
 public class CAController {
     @Autowired
     private CAService caService;

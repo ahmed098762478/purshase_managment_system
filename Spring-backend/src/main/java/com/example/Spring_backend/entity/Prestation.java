@@ -12,9 +12,8 @@ public class Prestation {
     private String nomPrestation;
     private Date datePrestation;
 
-    // Relation ManyToOne avec Fournisseur
     @ManyToOne
-    @JoinColumn(name = "fournisseur_id")  // Clé étrangère pour Fournisseur
+    @JoinColumn(name = "fournisseur_id")
     private Fournisseur fournisseur;
 
     public Long getIdPrestation() {
