@@ -124,13 +124,13 @@ const CommandDetails = () => {
         </tfoot>
       </table>
 
-      {/* {statut === "VALIDATED" && ( */}
+      {statut === "VALIDATED" && (
         <div className="mt-4 text-right">
           <Button colorScheme='blue' onClick={handleDownloadReceipt} isLoading={isDownloading}>
             Download Receipt
           </Button>
         </div>
-      {/* )} */}
+      )}
     </div>
   );
 };

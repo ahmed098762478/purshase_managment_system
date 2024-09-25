@@ -15,25 +15,20 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await fetch('http://localhost:8080/api/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, motDePasse: password }),
-            });
-
-            console.log("Response: ", response); 
-
-            if (response.ok) {
-                navigate('/admin');
-            } else {
-                const errorText = await response.text();
-                setErrorMessage(errorText);
-            }
-        } catch (error) {
-            setErrorMessage('An error occurred. Please try again later.');
+    
+        // Hardcoded credentials for local testing
+        const validEmail = 'omar@gmail.com';
+        const validPassword = 'root';
+    
+        if (email === validEmail && password === validPassword) {
+            // Simulate successful login
+            navigate('/admin');
+        } else {
+            // Simulate an error
+            setErrorMessage('Invalid email or password.');
         }
     };
+    
 
      
     const validateEmail = (email) => {

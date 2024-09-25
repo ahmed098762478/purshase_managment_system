@@ -2,8 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/PFA
     username: postgres
-    password: root
-    driver-class-name: org.postgresql.Driver
+    password: password
   jpa:
     hibernate:
       ddl-auto: create-drop
