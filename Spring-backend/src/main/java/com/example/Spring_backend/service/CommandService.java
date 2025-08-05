@@ -98,7 +98,7 @@ public class CommandService {
 
             document.add(table);
 
-            // Demandeur and Magasin Details
+
             addSection(document, "Demandeur Details", headerFont, normalFont,
                     "Name: " + command.getDemandeur().getNom_demandeur(),
                     "Type: " + command.getDemandeur().getType(),

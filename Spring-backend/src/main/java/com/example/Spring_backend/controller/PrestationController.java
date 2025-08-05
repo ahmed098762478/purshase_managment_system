@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/prestations")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5174")
 public class PrestationController {
 
     private final PrestationService prestationService;

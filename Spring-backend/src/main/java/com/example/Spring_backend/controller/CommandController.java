@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/commands")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5174")
 public class CommandController {
 
     @Autowired
